@@ -302,214 +302,90 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
 </section>
-<section id="module-gmtorch._gmm_sampler">
-<span id="gmtorch-gmm-sampler-module"></span><h2>gmtorch._gmm_sampler module<a class="headerlink" href="#module-gmtorch._gmm_sampler" title="Link to this heading">#</a></h2>
+<section id="module-gmtorch._gaussian_mixture">
+<span id="gmtorch-gaussian-mixture-module"></span><h2>gmtorch._gaussian_mixture module<a class="headerlink" href="#module-gmtorch._gaussian_mixture" title="Link to this heading">#</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gmtorch._gmm_sampler.</span></span><span class="sig-name descname"><span class="pre">GaussianMixture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deviations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gmtorch/_gmm_sampler.html#GaussianMixture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="gmtorch._gaussian_mixture.GaussianMixture">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gmtorch._gaussian_mixture.</span></span><span class="sig-name descname"><span class="pre">GaussianMixture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">means</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covariances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gaussian_mixture.GaussianMixture" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.K">
-<span class="sig-name descname"><span class="pre">K</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.K" title="Link to this definition">#</a></dt>
+<p>Gaussian Mixture Class.</p>
+<p>Parameters (6):
+- n_components (int)
+- dim (int)
+- weights (Tensor) shape (n_components,)
+- means (Tensor) shape (n_components, dim)
+- covariances (Tensor) shape (n_components, dim, dim)
+- device (torch.device or str)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gmtorch._gaussian_mixture.GaussianMixture._validate_covariances">
+<span class="sig-name descname"><span class="pre">_validate_covariances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture._validate_covariances"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gaussian_mixture.GaussianMixture._validate_covariances" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.avg_mean">
-<span class="sig-name descname"><span class="pre">avg_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gmm_sampler.html#GaussianMixture.avg_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.avg_mean" title="Link to this definition">#</a></dt>
-<dd><p>Return the average of #loops means.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>n</strong> (<em>int</em>) – number of samples</p></li>
-<li><p><strong>loops</strong> (<em>int</em>) – number of means to calculate the average from</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>_type_</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Tensor</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.avg_variance">
-<span class="sig-name descname"><span class="pre">avg_variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gmm_sampler.html#GaussianMixture.avg_variance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.avg_variance" title="Link to this definition">#</a></dt>
-<dd><p>Return the average of #loops variances.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>n</strong> (<em>int</em>) – number of samples</p></li>
-<li><p><strong>loops</strong> (<em>int</em>) – number of variance to calculate the average from</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>_type_</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Tensor</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.d">
-<span class="sig-name descname"><span class="pre">d</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.d" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.deviations">
-<span class="sig-name descname"><span class="pre">deviations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.deviations" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="gmtorch._gaussian_mixture.GaussianMixture._validate_dim">
+<span class="sig-name descname"><span class="pre">_validate_dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture._validate_dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gaussian_mixture.GaussianMixture._validate_dim" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.mean">
-<span class="sig-name descname"><span class="pre">mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gmm_sampler.html#GaussianMixture.mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.mean" title="Link to this definition">#</a></dt>
-<dd><p>Return the mean of the Gaussian mixture.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – number of samples</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>_type_</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Tensor</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.means">
-<span class="sig-name descname"><span class="pre">means</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.means" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.pi">
-<span class="sig-name descname"><span class="pre">pi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.pi" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="gmtorch._gaussian_mixture.GaussianMixture._validate_means">
+<span class="sig-name descname"><span class="pre">_validate_means</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture._validate_means"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gaussian_mixture.GaussianMixture._validate_means" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.random">
-<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#gmtorch._gmm_sampler.GaussianMixture" title="gmtorch._gmm_sampler.GaussianMixture"><span class="pre">GaussianMixture</span></a></span></span><a class="reference internal" href="../_modules/gmtorch/_gmm_sampler.html#GaussianMixture.random"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.random" title="Link to this definition">#</a></dt>
-<dd><p>Return Gaussian mixture with randomly generated mean and derivation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>d</strong> (<em>int</em>) – Dimension</p></li>
-<li><p><strong>K</strong> (<em>int</em>) – Number of Gaussian distributions in the Gaussian mixture</p></li>
-<li><p><strong>mean_range</strong> (<em>int</em>) – Max value that the mean can take.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>_type_</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Gaussian mixture of type gm</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gmm_sampler.html#GaussianMixture.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.sample" title="Link to this definition">#</a></dt>
-<dd><p>Return #n_samples of samples.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – number of samples</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>_type_</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Tensor filled with n_samples samples of the Gaussian mixture</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.threshhold">
-<span class="sig-name descname"><span class="pre">threshhold</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0001</span></em><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.threshhold" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="gmtorch._gaussian_mixture.GaussianMixture._validate_n_components">
+<span class="sig-name descname"><span class="pre">_validate_n_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture._validate_n_components"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gaussian_mixture.GaussianMixture._validate_n_components" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.GaussianMixture.variance">
-<span class="sig-name descname"><span class="pre">variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gmm_sampler.html#GaussianMixture.variance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gmm_sampler.GaussianMixture.variance" title="Link to this definition">#</a></dt>
-<dd><p>Return the variance of the Gaussian mixture.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – number of samples</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>_type_</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Tensor</p>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="gmtorch._gaussian_mixture.GaussianMixture._validate_weights">
+<span class="sig-name descname"><span class="pre">_validate_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture._validate_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gaussian_mixture.GaussianMixture._validate_weights" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.check_shape">
-<span class="sig-prename descclassname"><span class="pre">gmtorch._gmm_sampler.</span></span><span class="sig-name descname"><span class="pre">check_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Size</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gmm_sampler.html#check_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gmm_sampler.check_shape" title="Link to this definition">#</a></dt>
-<dd><p>Return true if shapes matche, false else.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>t</strong> (<em>torch.Tensor</em>) – the to be compared tensor</p></li>
-<li><p><strong>shape</strong> (<em>torch.Size</em>) – shape to be compared to</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>bool</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>true if shapes matche, false else</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.pdm">
-<span class="sig-prename descclassname"><span class="pre">gmtorch._gmm_sampler.</span></span><span class="sig-name descname"><span class="pre">pdm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gmm_sampler.html#pdm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gmm_sampler.pdm" title="Link to this definition">#</a></dt>
-<dd><p>Return a symmetric positive definite matrix of n d x d.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>d</strong> (<em>int</em>) – The dimension of the symmetric positive defninite matrix</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>_type_</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.tensor of dimension d x d</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gmtorch._gmm_sampler.random_weights">
-<span class="sig-prename descclassname"><span class="pre">gmtorch._gmm_sampler.</span></span><span class="sig-name descname"><span class="pre">random_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gmm_sampler.html#random_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch._gmm_sampler.random_weights" title="Link to this definition">#</a></dt>
-<dd><p>Return n weights that add up to 1.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – number of weights</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>_type_</strong></p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.tensor of size n</p>
-</dd>
-</dl>
 </dd></dl>
 
 </section>
 <section id="module-gmtorch">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-gmtorch" title="Link to this heading">#</a></h2>
-<p>gmtorch.</p>
+<p>Gaussian Mixture.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="gmtorch.GaussianMixture">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gmtorch.</span></span><span class="sig-name descname"><span class="pre">GaussianMixture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">means</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covariances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch.GaussianMixture" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Gaussian Mixture Class.</p>
+<p>Parameters (6):
+- n_components (int)
+- dim (int)
+- weights (Tensor) shape (n_components,)
+- means (Tensor) shape (n_components, dim)
+- covariances (Tensor) shape (n_components, dim, dim)
+- device (torch.device or str)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gmtorch.GaussianMixture._validate_covariances">
+<span class="sig-name descname"><span class="pre">_validate_covariances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture._validate_covariances"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch.GaussianMixture._validate_covariances" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gmtorch.GaussianMixture._validate_dim">
+<span class="sig-name descname"><span class="pre">_validate_dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture._validate_dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch.GaussianMixture._validate_dim" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gmtorch.GaussianMixture._validate_means">
+<span class="sig-name descname"><span class="pre">_validate_means</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture._validate_means"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch.GaussianMixture._validate_means" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gmtorch.GaussianMixture._validate_n_components">
+<span class="sig-name descname"><span class="pre">_validate_n_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture._validate_n_components"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch.GaussianMixture._validate_n_components" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gmtorch.GaussianMixture._validate_weights">
+<span class="sig-name descname"><span class="pre">_validate_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/gmtorch/_gaussian_mixture.html#GaussianMixture._validate_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch.GaussianMixture._validate_weights" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -552,28 +428,28 @@
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gmtorch._gmm_sampler">gmtorch._gmm_sampler module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture"><code class="docutils literal notranslate"><span class="pre">GaussianMixture</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.K"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.K</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.avg_mean"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.avg_mean()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.avg_variance"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.avg_variance()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.d"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.d</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.deviations"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.deviations</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.mean"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.mean()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.means"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.means</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.pi"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.pi</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.random"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.random()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.sample"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.sample()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.threshhold"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.threshhold</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.GaussianMixture.variance"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.variance()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gmtorch._gaussian_mixture">gmtorch._gaussian_mixture module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gaussian_mixture.GaussianMixture"><code class="docutils literal notranslate"><span class="pre">GaussianMixture</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gaussian_mixture.GaussianMixture._validate_covariances"><code class="docutils literal notranslate"><span class="pre">GaussianMixture._validate_covariances()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gaussian_mixture.GaussianMixture._validate_dim"><code class="docutils literal notranslate"><span class="pre">GaussianMixture._validate_dim()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gaussian_mixture.GaussianMixture._validate_means"><code class="docutils literal notranslate"><span class="pre">GaussianMixture._validate_means()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gaussian_mixture.GaussianMixture._validate_n_components"><code class="docutils literal notranslate"><span class="pre">GaussianMixture._validate_n_components()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gaussian_mixture.GaussianMixture._validate_weights"><code class="docutils literal notranslate"><span class="pre">GaussianMixture._validate_weights()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.check_shape"><code class="docutils literal notranslate"><span class="pre">check_shape()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.pdm"><code class="docutils literal notranslate"><span class="pre">pdm()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch._gmm_sampler.random_weights"><code class="docutils literal notranslate"><span class="pre">random_weights()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gmtorch">Module contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gmtorch">Module contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch.GaussianMixture"><code class="docutils literal notranslate"><span class="pre">GaussianMixture</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch.GaussianMixture._validate_covariances"><code class="docutils literal notranslate"><span class="pre">GaussianMixture._validate_covariances()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch.GaussianMixture._validate_dim"><code class="docutils literal notranslate"><span class="pre">GaussianMixture._validate_dim()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch.GaussianMixture._validate_means"><code class="docutils literal notranslate"><span class="pre">GaussianMixture._validate_means()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch.GaussianMixture._validate_n_components"><code class="docutils literal notranslate"><span class="pre">GaussianMixture._validate_n_components()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gmtorch.GaussianMixture._validate_weights"><code class="docutils literal notranslate"><span class="pre">GaussianMixture._validate_weights()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -4,10 +4,10 @@ gmtorch package
 Submodules
 ----------
 
-gmtorch.\_gmm\_sampler module
------------------------------
+gmtorch.\_gaussian\_mixture module
+----------------------------------
 
-.. automodule:: gmtorch._gmm_sampler
+.. automodule:: gmtorch._gaussian_mixture
    :members:
    :private-members:
    :show-inheritance:
