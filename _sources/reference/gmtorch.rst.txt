@@ -1,0 +1,10 @@
+gmtorch package
+===============
+
+Module contents
+---------------
+
+.. automodule:: gmtorch
+   :members:
+   :show-inheritance:
+   :undoc-members:
