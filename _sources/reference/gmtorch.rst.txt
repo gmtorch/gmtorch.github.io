@@ -1,10 +1,23 @@
 gmtorch package
 ===============
 
+Submodules
+----------
+
+gmtorch.\_gmm\_sampler module
+-----------------------------
+
+.. automodule:: gmtorch._gmm_sampler
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:
+
 Module contents
 ---------------
 
 .. automodule:: gmtorch
    :members:
+   :private-members:
    :show-inheritance:
    :undoc-members:
