@@ -1,10 +1,23 @@
 gmtorch package
 ===============
 
+Submodules
+----------
+
+gmtorch.\_gaussian\_mixture module
+----------------------------------
+
+.. automodule:: gmtorch._gaussian_mixture
+   :members:
+   :private-members:
+   :show-inheritance:
+   :undoc-members:
+
 Module contents
 ---------------
 
 .. automodule:: gmtorch
    :members:
+   :private-members:
    :show-inheritance:
    :undoc-members:
