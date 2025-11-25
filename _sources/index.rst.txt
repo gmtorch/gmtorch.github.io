@@ -14,3 +14,5 @@ Welcome to gmtorch's documentation!
 
    reference/modules
 
+.. meta::
+   :google-site-verification: ZvOMbfe4eEoIx0lRmB-tLwZ26L23PEyRzUZ9dY_lGAw
