@@ -38,8 +38,8 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gmtorch/_gaussian_mixture';</script>
     <link rel="canonical" href="https://gmtorch.github.io/_modules/gmtorch/_gaussian_mixture.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -287,6 +287,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">sklearn</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tensor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.func</span><span class="w"> </span><span class="kn">import</span> <span class="n">vmap</span>
 
 
 <div class="viewcode-block" id="GaussianMixture">
@@ -331,6 +332,38 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_weights</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">means</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_means</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">covariances</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_covariances</span><span class="p">(</span><span class="n">covariances</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GaussianMixture.prob_hyperrec">
+<a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.GaussianMixture.prob_hyperrec">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prob_hyperrec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100_00</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the integral of the Gaussian Mixture over a hyperrectangle known as the &quot;event&quot;.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        - E (Tensor): hyperrectangle bounds of shape (dim, 2)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        - Tensor: integral value over the hyperrectangle</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;event must be a torch.Tensor&quot;</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">prob_hyperrec</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">event</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">in_hyperrectangle</span><span class="p">(</span><span class="n">sample</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">all</span><span class="p">((</span><span class="n">sample</span> <span class="o">&gt;=</span> <span class="n">event</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sample</span> <span class="o">&lt;=</span> <span class="n">event</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]))</span>
+
+        <span class="n">in_hyperrectangle_vmap</span> <span class="o">=</span> <span class="n">vmap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sample</span><span class="p">:</span> <span class="n">in_hyperrectangle</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">event</span><span class="p">))</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">in_hyperrectangle_vmap</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">prob_hyperrec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">prob_hyperrec</span></div>
+
 
 <div class="viewcode-block" id="GaussianMixture.expectation">
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.GaussianMixture.expectation">[docs]</a>
@@ -400,7 +433,7 @@
                 <span class="p">)</span>
             <span class="p">]</span>
         <span class="p">)</span>
-        <span class="n">samples</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">samples_numpy</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">samples_numpy</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">samples</span></div>
 
 
@@ -514,7 +547,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.0.
     <br/>
   </p>
 </div>
