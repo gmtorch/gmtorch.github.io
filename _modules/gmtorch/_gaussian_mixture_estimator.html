@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gmtorch._gaussian_mixture_estimator &#8212; gmtorch 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gmtorch/_gaussian_mixture_estimator';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://gmtorch.github.io/_modules/gmtorch/_gaussian_mixture_estimator.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">gmtorch 0.1.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/modules.html">
+    gmtorch
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/modules.html">
+    gmtorch
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">gmtorch._gaussian_mixture_estimator</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for gmtorch._gaussian_mixture_estimator</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""PyTorch EM estimator skeleton for Gaussian mixture models."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tensor</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch._em</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseMixtureEM</span><span class="p">,</span> <span class="n">InitMethod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch._gaussian_mixture</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianMixture</span>
+
+<span class="n">MATRIX_TENSOR_ORDER</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">COVARIANCE_TENSOR_ORDER</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">COMPONENT_COUNT_EPS_FACTOR</span> <span class="o">=</span> <span class="mi">10</span>
+
+
+<div class="viewcode-block" id="GaussianMixtureEMState">
+<a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.GaussianMixtureEMState">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GaussianMixtureEMState</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Learned full-covariance Gaussian mixture parameters.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    weights : Tensor</span>
+<span class="sd">        Normalized mixture weights of shape ``(n_components,)``.</span>
+<span class="sd">    means : Tensor</span>
+<span class="sd">        Component means of shape ``(n_components, dim)``.</span>
+<span class="sd">    covariances : Tensor</span>
+<span class="sd">        Full component covariance matrices of shape ``(n_components, dim, dim)``.</span>
+<span class="sd">    precision_cholesky : Tensor</span>
+<span class="sd">        Cholesky factors used for stable precision-based log-probability evaluation.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    All tensors should live on the estimator device and use the estimator dtype. The</span>
+<span class="sd">    covariance representation intentionally matches ``GaussianMixture`` so fitted state</span>
+<span class="sd">    can be converted to the existing distribution object without changing its API.</span>
+<span class="sd">    """</span>
+
+    <span class="n">weights</span><span class="p">:</span> <span class="n">Tensor</span>
+    <span class="n">means</span><span class="p">:</span> <span class="n">Tensor</span>
+    <span class="n">covariances</span><span class="p">:</span> <span class="n">Tensor</span>
+    <span class="n">precision_cholesky</span><span class="p">:</span> <span class="n">Tensor</span></div>
+
+
+
+<div class="viewcode-block" id="GaussianMixtureEstimator">
+<a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.GaussianMixtureEstimator">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">GaussianMixtureEstimator</span><span class="p">(</span><span class="n">BaseMixtureEM</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""PyTorch EM estimator for full-covariance Gaussian mixtures.</span>
+
+<span class="sd">    This class should own fitting state and training metadata. The existing</span>
+<span class="sd">    ``GaussianMixture`` class should remain the distribution/value object, while this</span>
+<span class="sd">    estimator learns parameters and exposes ``to_mixture`` to build that distribution.</span>
+
+<span class="sd">    Conceptual responsibilities:</span>
+
+<span class="sd">    - parameter initialization through ``_initialize_parameters`` and</span>
+<span class="sd">      ``_initial_responsibilities``;</span>
+<span class="sd">    - E-step orchestration inherited from ``BaseMixtureEM``;</span>
+<span class="sd">    - M-step parameter updates through ``_m_step``;</span>
+<span class="sd">    - log-probability computation through ``_estimate_log_component_prob``;</span>
+<span class="sd">    - covariance estimation through module-level covariance helpers;</span>
+<span class="sd">    - prediction and responsibility computation inherited from ``BaseMixtureEM``;</span>
+<span class="sd">    - model state storage through ``GaussianMixtureEMState``.</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>  <span class="c1"># noqa: PLR0913</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_components</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">reg_covar</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span>
+        <span class="n">tol</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span>
+        <span class="n">max_iter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="n">n_init</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">init_method</span><span class="p">:</span> <span class="n">InitMethod</span> <span class="o">=</span> <span class="s2">"random_from_data"</span><span class="p">,</span>
+        <span class="n">weights_init</span><span class="p">:</span> <span class="n">Tensor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">means_init</span><span class="p">:</span> <span class="n">Tensor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">covariances_init</span><span class="p">:</span> <span class="n">Tensor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">warm_start</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Store Gaussian EM configuration and optional initial parameters."""</span>
+        <span class="k">if</span> <span class="n">reg_covar</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">"reg_covar must be non-negative"</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span>
+            <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span>
+            <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span>
+            <span class="n">n_init</span><span class="o">=</span><span class="n">n_init</span><span class="p">,</span>
+            <span class="n">init_method</span><span class="o">=</span><span class="n">init_method</span><span class="p">,</span>
+            <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+            <span class="n">warm_start</span><span class="o">=</span><span class="n">warm_start</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reg_covar</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">reg_covar</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights_init</span> <span class="o">=</span> <span class="n">weights_init</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">means_init</span> <span class="o">=</span> <span class="n">means_init</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">covariances_init</span> <span class="o">=</span> <span class="n">covariances_init</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">:</span> <span class="n">GaussianMixtureEMState</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GaussianMixtureEMState</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return fitted model state or raise if the estimator has not been fit."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">"GaussianMixtureEstimator has not been fit"</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span>
+
+<div class="viewcode-block" id="GaussianMixtureEstimator.to_mixture">
+<a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.GaussianMixtureEstimator.to_mixture">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_mixture</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GaussianMixture</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Build a ``GaussianMixture`` distribution from the fitted EM state."""</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+        <span class="k">return</span> <span class="n">GaussianMixture</span><span class="p">(</span>
+            <span class="n">n_components</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">dim</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">means</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">weights</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span>
+            <span class="n">means</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">means</span><span class="p">,</span>
+            <span class="n">covariances</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">covariances</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_initial_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Validate optional initial weights, means, and covariances.</span>
+
+<span class="sd">        Validation should mirror the public ``GaussianMixture`` constraints where</span>
+<span class="sd">        possible: normalized non-negative weights, means shaped ``(n_components, dim)``,</span>
+<span class="sd">        and symmetric positive-definite full covariance matrices.</span>
+<span class="sd">        """</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_input</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights_init</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weights_init</span> <span class="o">=</span> <span class="n">_validate_initial_weights</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">weights_init</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">means_init</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">means_init</span> <span class="o">=</span> <span class="n">_validate_initial_means</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">means_init</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">covariances_init</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">covariances_init</span> <span class="o">=</span> <span class="n">_validate_initial_covariances</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">covariances_init</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_initialize_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">generator</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Generator</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Initialize state from user parameters or generated responsibilities."""</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_input</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_initial_parameters</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="n">weights_init</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights_init</span>
+        <span class="n">means_init</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">means_init</span>
+        <span class="n">covariances_init</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">covariances_init</span>
+
+        <span class="k">if</span> <span class="n">weights_init</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">means_init</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">covariances_init</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">responsibilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initial_responsibilities</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">generator</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_from_responsibilities</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">responsibilities</span><span class="p">)</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">weights</span> <span class="k">if</span> <span class="n">weights_init</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">weights_init</span>
+            <span class="n">means</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">means</span> <span class="k">if</span> <span class="n">means_init</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">means_init</span>
+            <span class="n">covariances</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">covariances</span> <span class="k">if</span> <span class="n">covariances_init</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">covariances_init</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">weights_init</span>
+            <span class="n">means</span> <span class="o">=</span> <span class="n">means_init</span>
+            <span class="n">covariances</span> <span class="o">=</span> <span class="n">covariances_init</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">GaussianMixtureEMState</span><span class="p">(</span>
+            <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
+            <span class="n">means</span><span class="o">=</span><span class="n">means</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
+            <span class="n">covariances</span><span class="o">=</span><span class="n">covariances</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
+            <span class="n">precision_cholesky</span><span class="o">=</span><span class="n">_compute_precision_cholesky</span><span class="p">(</span><span class="n">covariances</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_initial_responsibilities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">generator</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Generator</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Create initial responsibilities according to ``init_method``.</span>
+
+<span class="sd">        Supported methods should be PyTorch-native. A future implementation may use</span>
+<span class="sd">        random responsibilities, sampled data points, or k-means++ style seeding while</span>
+<span class="sd">        keeping tensors on the configured device and dtype.</span>
+<span class="sd">        """</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_input</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">n_samples</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_method</span> <span class="o">==</span> <span class="s2">"random"</span><span class="p">:</span>
+            <span class="n">responsibilities</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">responsibilities</span> <span class="o">/</span> <span class="n">responsibilities</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_method</span> <span class="o">==</span> <span class="s2">"random_from_data"</span><span class="p">:</span>
+            <span class="n">responsibilities</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="p">)</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">)[</span>
+                <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span>
+            <span class="p">]</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">responsibilities</span><span class="p">[</span><span class="n">indices</span><span class="p">,</span> <span class="n">components</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">responsibilities</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"kmeans++ initialization is not implemented yet"</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_initialize_from_responsibilities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">responsibilities</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Estimate initial state from responsibilities produced during initialization."""</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_input</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">expected_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">responsibilities</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">MATRIX_TENSOR_ORDER</span> <span class="ow">or</span> <span class="n">responsibilities</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">expected_shape</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">"responsibilities must have shape (n_samples, n_components)"</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">_estimate_gaussian_parameters</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">responsibilities</span><span class="p">,</span> <span class="n">reg_covar</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reg_covar</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_m_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">log_resp</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Run the Gaussian M-step and replace the current EM state."""</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_input</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">expected_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_components</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">log_resp</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">MATRIX_TENSOR_ORDER</span> <span class="ow">or</span> <span class="n">log_resp</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">expected_shape</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">"log_resp must have shape (n_samples, n_components)"</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">log_resp</span><span class="o">.</span><span class="n">is_floating_point</span><span class="p">():</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">"log_resp must be a floating point tensor"</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">_estimate_gaussian_parameters</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">log_resp</span><span class="o">.</span><span class="n">exp</span><span class="p">(),</span> <span class="n">reg_covar</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reg_covar</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_estimate_log_component_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Compute Gaussian log probabilities using cached precision Cholesky factors."""</span>
+        <span class="k">return</span> <span class="n">_estimate_log_full_gaussian_prob</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">means</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">precision_cholesky</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_estimate_log_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return log normalized mixture weights from the current state."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">log</span><span class="p">()</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_validate_initial_weights</span><span class="p">(</span>
+    <span class="n">weights</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">n_components</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Validate and normalize user-supplied initial mixture weights."""</span>
+    <span class="k">if</span> <span class="n">weights</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">weights</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">n_components</span><span class="p">,):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"weights_init must have shape (n_components,)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">weights</span><span class="o">.</span><span class="n">is_floating_point</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"weights_init must be a floating point tensor"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">weights_sum</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">weights</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"weights_init must be non-negative"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">weights_sum</span><span class="p">,</span> <span class="n">weights</span><span class="o">.</span><span class="n">new_tensor</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"weights_init must sum to 1.0"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">weights</span> <span class="o">/</span> <span class="n">weights_sum</span><span class="p">)</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_validate_initial_means</span><span class="p">(</span>
+    <span class="n">means</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">n_components</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Validate and align user-supplied initial Gaussian means."""</span>
+    <span class="k">if</span> <span class="n">means</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">MATRIX_TENSOR_ORDER</span> <span class="ow">or</span> <span class="n">means</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"means_init must have shape (n_components, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">means</span><span class="o">.</span><span class="n">is_floating_point</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"means_init must be a floating point tensor"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">means</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_validate_initial_covariances</span><span class="p">(</span>
+    <span class="n">covariances</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">n_components</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Validate and align user-supplied initial full covariance matrices."""</span>
+    <span class="k">if</span> <span class="n">covariances</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">COVARIANCE_TENSOR_ORDER</span> <span class="ow">or</span> <span class="n">covariances</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"covariances_init must have shape (n_components, dim, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">covariances</span><span class="o">.</span><span class="n">is_floating_point</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"covariances_init must be a floating point tensor"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">covariances</span> <span class="o">=</span> <span class="n">covariances</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">covariances</span><span class="p">,</span> <span class="n">covariances</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"covariances_init must be symmetric"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">_compute_precision_cholesky</span><span class="p">(</span><span class="n">covariances</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"covariances_init must be positive definite"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
+
+    <span class="k">return</span> <span class="n">covariances</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_estimate_gaussian_parameters</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">responsibilities</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">reg_covar</span><span class="p">:</span> <span class="nb">float</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GaussianMixtureEMState</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Estimate Gaussian mixture parameters for initialization or the M-step.</span>
+
+<span class="sd">    Given samples and posterior responsibilities, this computes the</span>
+<span class="sd">    full-covariance Gaussian maximum-likelihood updates used by EM. Component</span>
+<span class="sd">    counts are stabilized with a small sklearn-style ``10 * eps`` offset before</span>
+<span class="sd">    division, and the returned mixture weights are normalized to sum to one.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : Tensor</span>
+<span class="sd">        Input samples with shape ``(n_samples, dim)``. The tensor must be floating</span>
+<span class="sd">        point, and the returned state preserves its device and dtype.</span>
+<span class="sd">    responsibilities : Tensor</span>
+<span class="sd">        Non-negative posterior component probabilities with shape</span>
+<span class="sd">        ``(n_samples, n_components)``. Values are converted to the device and dtype</span>
+<span class="sd">        of ``x`` before the estimates are computed.</span>
+<span class="sd">    reg_covar : float</span>
+<span class="sd">        Non-negative value added to every covariance diagonal for numerical</span>
+<span class="sd">        regularization.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    GaussianMixtureEMState</span>
+<span class="sd">        Estimated full-covariance Gaussian mixture state. The state contains</span>
+<span class="sd">        normalized ``weights`` with shape ``(n_components,)``, ``means`` with shape</span>
+<span class="sd">        ``(n_components, dim)``, full ``covariances`` with shape</span>
+<span class="sd">        ``(n_components, dim, dim)``, and matching ``precision_cholesky`` factors.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If inputs have incompatible shapes, are not floating point, contain negative</span>
+<span class="sd">        responsibilities, use a negative regularization value, or produce covariance</span>
+<span class="sd">        matrices that cannot be Cholesky-factorized.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">MATRIX_TENSOR_ORDER</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"x must have shape (n_samples, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">responsibilities</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">MATRIX_TENSOR_ORDER</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"responsibilities must have shape (n_samples, n_components)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="o">.</span><span class="n">is_floating_point</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"x must be a floating point tensor"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">responsibilities</span><span class="o">.</span><span class="n">is_floating_point</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"responsibilities must be a floating point tensor"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">reg_covar</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"reg_covar must be non-negative"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">responsibilities</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_samples</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"responsibilities must have shape (n_samples, n_components)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">responsibilities</span> <span class="o">=</span> <span class="n">responsibilities</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">responsibilities</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"responsibilities must be non-negative"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">component_counts</span> <span class="o">=</span> <span class="n">responsibilities</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">component_counts</span> <span class="o">=</span> <span class="n">component_counts</span> <span class="o">+</span> <span class="p">(</span>
+        <span class="n">COMPONENT_COUNT_EPS_FACTOR</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">responsibilities</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span>
+    <span class="p">)</span>
+
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">component_counts</span> <span class="o">/</span> <span class="n">component_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="p">(</span><span class="n">responsibilities</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">component_counts</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">covariances</span> <span class="o">=</span> <span class="n">_estimate_full_covariances</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">responsibilities</span><span class="p">,</span> <span class="n">component_counts</span><span class="p">,</span> <span class="n">means</span><span class="p">,</span> <span class="n">reg_covar</span><span class="o">=</span><span class="n">reg_covar</span>
+    <span class="p">)</span>
+    <span class="n">precision_cholesky</span> <span class="o">=</span> <span class="n">_compute_precision_cholesky</span><span class="p">(</span><span class="n">covariances</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">GaussianMixtureEMState</span><span class="p">(</span>
+        <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">means</span><span class="o">=</span><span class="n">means</span><span class="p">,</span> <span class="n">covariances</span><span class="o">=</span><span class="n">covariances</span><span class="p">,</span> <span class="n">precision_cholesky</span><span class="o">=</span><span class="n">precision_cholesky</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_estimate_full_covariances</span><span class="p">(</span>  <span class="c1"># noqa: C901</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">responsibilities</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">component_counts</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">means</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">reg_covar</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Estimate full covariance matrices with diagonal regularization.</span>
+
+<span class="sd">    This uses the responsibility-weighted maximum-likelihood covariance estimator</span>
+<span class="sd">    from the Gaussian-mixture EM M-step:</span>
+
+<span class="sd">    ``Sigma_k = sum_i r_ik (x_i - mu_k) (x_i - mu_k)^T / N_k``</span>
+
+<span class="sd">    where ``r_ik`` is the responsibility of component ``k`` for sample ``i`` and</span>
+<span class="sd">    ``N_k = sum_i r_ik`` is the effective component count. After the weighted</span>
+<span class="sd">    estimate is computed, ``reg_covar`` is added to the diagonal to keep the</span>
+<span class="sd">    empirical covariance away from singularity.</span>
+
+<span class="sd">    This function should preserve the input device and dtype and return covariance</span>
+<span class="sd">    matrices shaped ``(n_components, dim, dim)``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : Tensor</span>
+<span class="sd">        Input samples of shape ``(n_samples, dim)``.</span>
+<span class="sd">    responsibilities : Tensor</span>
+<span class="sd">        Posterior component responsibilities of shape</span>
+<span class="sd">        ``(n_samples, n_components)``.</span>
+<span class="sd">    component_counts : Tensor</span>
+<span class="sd">        Effective component counts of shape ``(n_components,)``.</span>
+<span class="sd">    means : Tensor</span>
+<span class="sd">        Component means of shape ``(n_components, dim)``.</span>
+<span class="sd">    reg_covar : float</span>
+<span class="sd">        Non-negative regularization added to each covariance diagonal.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Tensor</span>
+<span class="sd">        Full covariance matrices of shape ``(n_components, dim, dim)``.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">MATRIX_TENSOR_ORDER</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"x must have shape (n_samples, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">responsibilities</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">MATRIX_TENSOR_ORDER</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"responsibilities must have shape (n_samples, n_components)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">means</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">MATRIX_TENSOR_ORDER</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"means must have shape (n_components, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">component_counts</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"component_counts must have shape (n_components,)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">reg_covar</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"reg_covar must be non-negative"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">n_samples</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">n_components</span> <span class="o">=</span> <span class="n">means</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">responsibilities</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_components</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"responsibilities must have shape (n_samples, n_components)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">means</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">dim</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"means must have shape (n_components, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">component_counts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_components</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"component_counts must have shape (n_components,)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">component_counts</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"component_counts must be strictly positive"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">responsibilities</span> <span class="o">=</span> <span class="n">responsibilities</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">component_counts</span> <span class="o">=</span> <span class="n">component_counts</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">means</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="n">covariances</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n_components</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_components</span><span class="p">):</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">means</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+        <span class="n">weighted_diff</span> <span class="o">=</span> <span class="n">responsibilities</span><span class="p">[:,</span> <span class="n">component</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">diff</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">covariances</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">weighted_diff</span> <span class="o">@</span> <span class="n">diff</span> <span class="o">/</span> <span class="n">component_counts</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+        <span class="n">covariances</span><span class="p">[</span><span class="n">component</span><span class="p">]</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">reg_covar</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">covariances</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_compute_precision_cholesky</span><span class="p">(</span><span class="n">covariances</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Compute Cholesky factors of full covariance precision matrices.</span>
+
+<span class="sd">    For each covariance matrix ``Sigma_k``, this computes a factor ``U_k`` such that</span>
+<span class="sd">    ``U_k @ U_k.T = inv(Sigma_k)``. The factor is obtained with the same convention used</span>
+<span class="sd">    by the Gaussian-mixture log-probability helper: if ``L_k = cholesky(Sigma_k)`` is the</span>
+<span class="sd">    lower-triangular covariance Cholesky factor, then ``U_k = solve(L_k, I).T``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    covariances : Tensor</span>
+<span class="sd">        Full covariance matrices of shape ``(n_components, dim, dim)``. The tensor must</span>
+<span class="sd">        be floating point and each matrix must be symmetric positive definite.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Tensor</span>
+<span class="sd">        Precision Cholesky factors of shape ``(n_components, dim, dim)`` on the same</span>
+<span class="sd">        device and with the same dtype as ``covariances``.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If ``covariances`` does not have shape ``(n_components, dim, dim)``, is not</span>
+<span class="sd">        floating point, is not square/symmetric, or contains a matrix that cannot be</span>
+<span class="sd">        Cholesky-factorized.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">covariances</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">COVARIANCE_TENSOR_ORDER</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"covariances must have shape (n_components, dim, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">covariances</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">covariances</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"covariances must have shape (n_components, dim, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">covariances</span><span class="o">.</span><span class="n">is_floating_point</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"covariances must be floating point tensors"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">covariances</span><span class="p">,</span> <span class="n">covariances</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"covariances must be symmetric"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">n_components</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">covariances</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">estimate_precision_msg</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"Fitting the mixture model failed because some components have ill-defined "</span>
+        <span class="s2">"empirical covariance. Try decreasing n_components, increasing reg_covar, "</span>
+        <span class="s2">"or scaling the input data."</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">covariances</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
+        <span class="n">estimate_precision_msg</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">estimate_precision_msg</span><span class="si">}</span><span class="s2"> Numerical accuracy can also be improved by using "</span>
+            <span class="s2">"float64 data instead of float32."</span>
+        <span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">covariance_cholesky</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cholesky</span><span class="p">(</span><span class="n">covariances</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinAlgError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>  <span class="c1"># type: ignore[attr-defined]</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">estimate_precision_msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
+
+    <span class="n">identity</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">covariances</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">covariances</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">inverse_cholesky</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve_triangular</span><span class="p">(</span>
+        <span class="n">covariance_cholesky</span><span class="p">,</span> <span class="n">identity</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">upper</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Tensor"</span><span class="p">,</span> <span class="n">inverse_cholesky</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_estimate_log_full_gaussian_prob</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">means</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">precision_cholesky</span><span class="p">:</span> <span class="n">Tensor</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Return per-component full-covariance Gaussian log probabilities.</span>
+
+<span class="sd">    This evaluates the Gaussian component log density for every sample and component:</span>
+
+<span class="sd">    ``log N(x_i | mu_k, Sigma_k)``</span>
+
+<span class="sd">    The computation uses the precision Cholesky factors returned by</span>
+<span class="sd">    ``_compute_precision_cholesky``. For each component, the squared Mahalanobis term is</span>
+<span class="sd">    computed as ``||(x_i - mu_k) @ U_k||^2``, where</span>
+<span class="sd">    ``U_k @ U_k.T = inv(Sigma_k)``. The log determinant contribution is computed from the</span>
+<span class="sd">    diagonal of ``U_k``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : Tensor</span>
+<span class="sd">        Input samples of shape ``(n_samples, dim)``.</span>
+<span class="sd">    means : Tensor</span>
+<span class="sd">        Component means of shape ``(n_components, dim)``.</span>
+<span class="sd">    precision_cholesky : Tensor</span>
+<span class="sd">        Precision Cholesky factors of shape ``(n_components, dim, dim)``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Tensor</span>
+<span class="sd">        Component log probabilities of shape ``(n_samples, n_components)``.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the input tensors do not have compatible full-covariance Gaussian shapes or</span>
+<span class="sd">        are not floating point.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">MATRIX_TENSOR_ORDER</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"x must have shape (n_samples, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">means</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">MATRIX_TENSOR_ORDER</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"means must have shape (n_components, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">precision_cholesky</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="n">COVARIANCE_TENSOR_ORDER</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"precision_cholesky must have shape (n_components, dim, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="o">.</span><span class="n">is_floating_point</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"x must be a floating point tensor"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">means</span><span class="o">.</span><span class="n">is_floating_point</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"means must be a floating point tensor"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">precision_cholesky</span><span class="o">.</span><span class="n">is_floating_point</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"precision_cholesky must be a floating point tensor"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">n_samples</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">n_components</span> <span class="o">=</span> <span class="n">means</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">means</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">dim</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"means must have shape (n_components, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">precision_cholesky</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">n_components</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">"precision_cholesky must have shape (n_components, dim, dim)"</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">means</span> <span class="o">=</span> <span class="n">means</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">precision_cholesky</span> <span class="o">=</span> <span class="n">precision_cholesky</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="n">log_det</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">precision_cholesky</span><span class="p">,</span> <span class="n">dim1</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim2</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">squared_mahalanobis</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_components</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_components</span><span class="p">):</span>
+        <span class="n">transformed</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">@</span> <span class="n">precision_cholesky</span><span class="p">[</span><span class="n">component</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span>
+            <span class="n">means</span><span class="p">[</span><span class="n">component</span><span class="p">]</span> <span class="o">@</span> <span class="n">precision_cholesky</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">squared_mahalanobis</span><span class="p">[:,</span> <span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">transformed</span><span class="o">.</span><span class="n">square</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">dim</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">+</span> <span class="n">squared_mahalanobis</span><span class="p">)</span> <span class="o">+</span> <span class="n">log_det</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

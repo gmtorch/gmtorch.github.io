@@ -1,6 +1,49 @@
 gmtorch package
 ===============
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   gmtorch.reduction
+
+Submodules
+----------
+
+gmtorch.arithmetic module
+-------------------------
+
+.. automodule:: gmtorch.arithmetic
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+gmtorch.divergences module
+--------------------------
+
+.. automodule:: gmtorch.divergences
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+gmtorch.fusion module
+---------------------
+
+.. automodule:: gmtorch.fusion
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+gmtorch.propagation module
+--------------------------
+
+.. automodule:: gmtorch.propagation
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 Module contents
 ---------------
 

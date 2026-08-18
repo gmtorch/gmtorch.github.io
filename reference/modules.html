@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>gmtorch &#8212; gmtorch 0.0.1 documentation</title>
+    <title>gmtorch &#8212; gmtorch 0.1.0 documentation</title>
   
   
   
@@ -27,21 +27,22 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/modules';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://gmtorch.github.io/reference/modules.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -49,21 +50,27 @@
     <link rel="prev" title="gmtorch documentation" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="0.0.1" />
+  <meta name="docsearch:version" content="0.1.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -89,7 +96,7 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
   <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
@@ -111,7 +118,7 @@
   
   
   
-    <p class="title logo__title">gmtorch 0.0.1 documentation</p>
+    <p class="title logo__title">gmtorch 0.1.0 documentation</p>
   
 </a></div>
     
@@ -152,11 +159,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
     </div>
     
@@ -222,23 +236,41 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
         <div class="sidebar-primary-item">
+
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="gmtorch.html">gmtorch package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="gmtorch.html">gmtorch package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="gmtorch.reduction.html">gmtorch.reduction package</a></li>
+</ul>
+</details></li>
 </ul>
 </div>
 </nav></div>
@@ -301,14 +333,143 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="gmtorch.html">gmtorch package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gmtorch.html#module-gmtorch">Module contents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture"><code class="docutils literal notranslate"><span class="pre">GaussianMixture</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.covariance"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.covariance()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.expectation"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.expectation()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.prob_hyperrec"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.prob_hyperrec()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.sample"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.sample()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gmtorch.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.reduction.html">gmtorch.reduction package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.reduction.html#module-gmtorch.reduction">Module contents</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gmtorch.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gmtorch.html#module-gmtorch.arithmetic">gmtorch.arithmetic module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.arithmetic.affine_transform_gmm"><code class="docutils literal notranslate"><span class="pre">affine_transform_gmm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.arithmetic.rotate_2d_gmm"><code class="docutils literal notranslate"><span class="pre">rotate_2d_gmm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.arithmetic.rotate_3d_gmm"><code class="docutils literal notranslate"><span class="pre">rotate_3d_gmm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.arithmetic.rotation_matrix_2d"><code class="docutils literal notranslate"><span class="pre">rotation_matrix_2d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.arithmetic.rotation_matrix_3d"><code class="docutils literal notranslate"><span class="pre">rotation_matrix_3d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.arithmetic.scale_gmm"><code class="docutils literal notranslate"><span class="pre">scale_gmm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.arithmetic.shift_gmm"><code class="docutils literal notranslate"><span class="pre">shift_gmm()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.arithmetic.substract_independent_gmms"><code class="docutils literal notranslate"><span class="pre">substract_independent_gmms()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.arithmetic.sum_independent_gmms"><code class="docutils literal notranslate"><span class="pre">sum_independent_gmms()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gmtorch.html#module-gmtorch.divergences">gmtorch.divergences module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.divergences.cs_divergence"><code class="docutils literal notranslate"><span class="pre">cs_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.divergences.jr2_divergence"><code class="docutils literal notranslate"><span class="pre">jr2_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.divergences.l2_divergence"><code class="docutils literal notranslate"><span class="pre">l2_divergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.divergences.tb2_divergence"><code class="docutils literal notranslate"><span class="pre">tb2_divergence()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gmtorch.html#module-gmtorch.fusion">gmtorch.fusion module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.fusion.bayesian_fusion_gmm"><code class="docutils literal notranslate"><span class="pre">bayesian_fusion_gmm()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gmtorch.html#module-gmtorch.propagation">gmtorch.propagation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.AffineTransform"><code class="docutils literal notranslate"><span class="pre">AffineTransform</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.AffineTransform.apply"><code class="docutils literal notranslate"><span class="pre">AffineTransform.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.AffineTransform.matrix"><code class="docutils literal notranslate"><span class="pre">AffineTransform.matrix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.AffineTransform.offset"><code class="docutils literal notranslate"><span class="pre">AffineTransform.offset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.BayesianFusion"><code class="docutils literal notranslate"><span class="pre">BayesianFusion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.BayesianFusion.apply"><code class="docutils literal notranslate"><span class="pre">BayesianFusion.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.BayesianFusion.block_size"><code class="docutils literal notranslate"><span class="pre">BayesianFusion.block_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.BayesianFusion.other"><code class="docutils literal notranslate"><span class="pre">BayesianFusion.other</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.ClosedFormOperation"><code class="docutils literal notranslate"><span class="pre">ClosedFormOperation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.ClosedFormOperation.apply"><code class="docutils literal notranslate"><span class="pre">ClosedFormOperation.apply()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Condition"><code class="docutils literal notranslate"><span class="pre">Condition</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Condition.apply"><code class="docutils literal notranslate"><span class="pre">Condition.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Condition.obs_idx"><code class="docutils literal notranslate"><span class="pre">Condition.obs_idx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Condition.obs_values"><code class="docutils literal notranslate"><span class="pre">Condition.obs_values</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Marginalize"><code class="docutils literal notranslate"><span class="pre">Marginalize</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Marginalize.apply"><code class="docutils literal notranslate"><span class="pre">Marginalize.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Marginalize.idx_keep"><code class="docutils literal notranslate"><span class="pre">Marginalize.idx_keep</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Rotate2D"><code class="docutils literal notranslate"><span class="pre">Rotate2D</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Rotate2D.angle"><code class="docutils literal notranslate"><span class="pre">Rotate2D.angle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Rotate2D.apply"><code class="docutils literal notranslate"><span class="pre">Rotate2D.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Rotate2D.center"><code class="docutils literal notranslate"><span class="pre">Rotate2D.center</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Rotate3D"><code class="docutils literal notranslate"><span class="pre">Rotate3D</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Rotate3D.angle"><code class="docutils literal notranslate"><span class="pre">Rotate3D.angle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Rotate3D.apply"><code class="docutils literal notranslate"><span class="pre">Rotate3D.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Rotate3D.axis"><code class="docutils literal notranslate"><span class="pre">Rotate3D.axis</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Rotate3D.center"><code class="docutils literal notranslate"><span class="pre">Rotate3D.center</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Scale"><code class="docutils literal notranslate"><span class="pre">Scale</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Scale.apply"><code class="docutils literal notranslate"><span class="pre">Scale.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Scale.scale"><code class="docutils literal notranslate"><span class="pre">Scale.scale</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Shift"><code class="docutils literal notranslate"><span class="pre">Shift</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Shift.apply"><code class="docutils literal notranslate"><span class="pre">Shift.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.Shift.offset"><code class="docutils literal notranslate"><span class="pre">Shift.offset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.SubtractIndependent"><code class="docutils literal notranslate"><span class="pre">SubtractIndependent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.SubtractIndependent.apply"><code class="docutils literal notranslate"><span class="pre">SubtractIndependent.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.SubtractIndependent.other"><code class="docutils literal notranslate"><span class="pre">SubtractIndependent.other</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.SumIndependent"><code class="docutils literal notranslate"><span class="pre">SumIndependent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.SumIndependent.apply"><code class="docutils literal notranslate"><span class="pre">SumIndependent.apply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.SumIndependent.other"><code class="docutils literal notranslate"><span class="pre">SumIndependent.other</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.closed_form_propagation"><code class="docutils literal notranslate"><span class="pre">closed_form_propagation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagation.propagate_gmm"><code class="docutils literal notranslate"><span class="pre">propagate_gmm()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gmtorch.html#module-gmtorch">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture"><code class="docutils literal notranslate"><span class="pre">GaussianMixture</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.add_independent_"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.add_independent_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.affine_transform_"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.affine_transform_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.clone"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.clone()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.cond"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.cond()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.covariance"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.covariance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.expectation"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.expectation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.log_prob"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.log_prob()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.marginalize"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.marginalize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.prob"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.prob()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.prob_hyperrec"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.prob_hyperrec()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.propagate"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.propagate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.qmc_sampling"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.qmc_sampling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.random"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.random()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.rotate_2d_"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.rotate_2d_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.rotate_3d_"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.rotate_3d_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.sample"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.sample()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.scale_"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.scale_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.shift_"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.shift_()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.substract_independent_"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.substract_independent_()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEMState"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEMState.weights"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.weights</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEMState.means"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.means</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEMState.covariances"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.covariances</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEMState.precision_cholesky"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.precision_cholesky</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#id0"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.covariances</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#id1"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.means</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#id2"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.precision_cholesky</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#id3"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.weights</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEstimator"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEstimator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEstimator.state"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEstimator.state</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEstimator.to_mixture"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEstimator.to_mixture()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.closed_form_propagation"><code class="docutils literal notranslate"><span class="pre">closed_form_propagation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.propagate_gmm"><code class="docutils literal notranslate"><span class="pre">propagate_gmm()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -357,13 +518,13 @@
 
 
   <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/reference/modules.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/reference/modules.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
 
 </div></div>
               
@@ -378,8 +539,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -413,7 +574,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
 </p></div>
       
     </div>

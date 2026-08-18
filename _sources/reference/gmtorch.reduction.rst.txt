@@ -1,0 +1,10 @@
+gmtorch.reduction package
+=========================
+
+Module contents
+---------------
+
+.. automodule:: gmtorch.reduction
+   :members:
+   :show-inheritance:
+   :undoc-members:
