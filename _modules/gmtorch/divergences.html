@@ -30,6 +30,10 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -40,6 +44,7 @@
     <script src="../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gmtorch/divergences';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://gmtorch.github.io/_modules/gmtorch/divergences.html" />
@@ -130,6 +135,13 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../reference/modules.html">
     gmtorch
   </a>
@@ -213,6 +225,13 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../reference/modules.html">
     gmtorch
@@ -339,6 +358,15 @@
 <span class="sd">    -------</span>
 <span class="sd">    float</span>
 <span class="sd">        The L2 divergence between p and q.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.divergences import l2_divergence</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(dim=1, means=torch.tensor([[0.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; divergence = l2_divergence(gm, gm.clone(), block_size=1)</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(divergence, torch.zeros(()), atol=1e-6)</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">p_gmm</span><span class="o">.</span><span class="n">dim</span> <span class="o">!=</span> <span class="n">q_gmm</span><span class="o">.</span><span class="n">dim</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="s2">"Cannot compute L2 divergence for GMMs with different dimensions."</span>
@@ -370,6 +398,17 @@
 <span class="sd">    -------</span>
 <span class="sd">    float</span>
 <span class="sd">        The Cauchy-Schwarz divergence between p and q.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.divergences import cs_divergence</span>
+<span class="sd">    &gt;&gt;&gt; gm0 = GaussianMixture(dim=1, means=torch.tensor([[0.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; gm1 = GaussianMixture(dim=1, means=torch.tensor([[1.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; divergence = cs_divergence(gm0, gm1, block_size=1)</span>
+<span class="sd">    &gt;&gt;&gt; assert divergence.ndim == 0</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.isfinite(divergence)</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">p_gmm</span><span class="o">.</span><span class="n">dim</span> <span class="o">!=</span> <span class="n">q_gmm</span><span class="o">.</span><span class="n">dim</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="s2">"Cannot compute Cauchy-Schwarz divergence for GMMs with different dimensions."</span>
@@ -401,6 +440,17 @@
 <span class="sd">    -------</span>
 <span class="sd">    float</span>
 <span class="sd">        The Jeffrey-Renyi 2 divergence between p and q.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.divergences import jr2_divergence</span>
+<span class="sd">    &gt;&gt;&gt; gm0 = GaussianMixture(dim=1, means=torch.tensor([[0.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; gm1 = GaussianMixture(dim=1, means=torch.tensor([[1.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; divergence = jr2_divergence(gm0, gm1, block_size=1)</span>
+<span class="sd">    &gt;&gt;&gt; assert divergence.ndim == 0</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.isfinite(divergence)</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">p_gmm</span><span class="o">.</span><span class="n">dim</span> <span class="o">!=</span> <span class="n">q_gmm</span><span class="o">.</span><span class="n">dim</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="s2">"Cannot compute Jeffrey-Renyi 2 divergence for GMMs with different dimensions."</span>
@@ -432,6 +482,17 @@
 <span class="sd">    -------</span>
 <span class="sd">    float</span>
 <span class="sd">        The Total Bregman 2 divergence between p and q.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.divergences import tb2_divergence</span>
+<span class="sd">    &gt;&gt;&gt; gm0 = GaussianMixture(dim=1, means=torch.tensor([[0.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; gm1 = GaussianMixture(dim=1, means=torch.tensor([[1.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; divergence = tb2_divergence(gm0, gm1, block_size=1)</span>
+<span class="sd">    &gt;&gt;&gt; assert divergence.ndim == 0</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.isfinite(divergence)</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">p_gmm</span><span class="o">.</span><span class="n">dim</span> <span class="o">!=</span> <span class="n">q_gmm</span><span class="o">.</span><span class="n">dim</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="s2">"Cannot compute Total Bregman 2 divergence for GMMs with different dimensions."</span>
@@ -685,7 +746,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans.
+      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans, Genís Floriach Pigem.
       <br/>
     
   </p>

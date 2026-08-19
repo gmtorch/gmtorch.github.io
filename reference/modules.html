@@ -31,6 +31,10 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,13 +45,14 @@
     <script src="../_static/documentation_options.js?v=01f34227"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/modules';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://gmtorch.github.io/reference/modules.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="gmtorch package" href="gmtorch.html" />
-    <link rel="prev" title="gmtorch documentation" href="../index.html" />
+    <link rel="prev" title="Reducing a GMM With EM" href="../auto_examples/gmm_reduction_with_em.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.1.0" />
@@ -132,6 +137,13 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
     gmtorch
@@ -218,6 +230,13 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
     gmtorch
@@ -452,17 +471,6 @@
 <li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture.substract_independent_"><code class="docutils literal notranslate"><span class="pre">GaussianMixture.substract_independent_()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEMState"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEMState.weights"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.weights</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEMState.means"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.means</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEMState.covariances"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.covariances</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEMState.precision_cholesky"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.precision_cholesky</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#id0"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.covariances</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#id1"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.means</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#id2"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.precision_cholesky</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gmtorch.html#id3"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEMState.weights</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEstimator"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEstimator</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEstimator.state"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEstimator.state</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEstimator.to_mixture"><code class="docutils literal notranslate"><span class="pre">GaussianMixtureEstimator.to_mixture()</span></code></a></li>
@@ -489,12 +497,12 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="../auto_examples/gmm_reduction_with_em.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">gmtorch documentation</p>
+        <p class="prev-next-title">Reducing a GMM With EM</p>
       </div>
     </a>
     <a class="right-next"
@@ -551,7 +559,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans.
+      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans, Genís Floriach Pigem.
       <br/>
     
   </p>

@@ -1,0 +1,175 @@
+:orphan:
+
+Examples
+========
+
+Executable examples showing common Gaussian-mixture workflows with ``gmtorch``.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example builds a known two-dimensional Gaussian mixture, samples from it, and fits a new mixture with GaussianMixtureEstimator. Since mixture component labels are arbitrary, the fitted component order may differ from the ground truth even when the geometry is recovered well.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_gmm_fitting_with_em_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/gmm_fitting_with_em`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Fitting a GMM With EM</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example applies geometric transformations to a two-dimensional Gaussian mixture. The same operations are available as in-place methods on GaussianMixture and as non-mutating helper functions in gmtorch.arithmetic.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_gmm_transformations_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/gmm_transformations`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Transforming a 2D GMM</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example models 2D robot localization with Gaussian mixtures. A robot starts with a multimodal position belief, propagates that belief through an exact odometry update with mixture-valued process noise, and then uses Bayesian fusion to combine the prediction with an ambiguous sensor likelihood.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_gmm_closed_form_robot_localization_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/gmm_closed_form_robot_localization`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Robot Localization Under Uncertainty</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example introduces the main gmtorch class, GaussianMixture. It creates a two-dimensional Gaussian mixture and showcases the following basic methods:">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_introduction_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/introduction`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Introduction</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example propagates a two-dimensional Gaussian mixture through a nonlinear function. The output distribution is not available in closed form, so propagate_gmm samples from the input mixture, applies the function, and fits a new Gaussian mixture to the transformed samples.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_gmm_propagation_nonlinear_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/gmm_propagation_nonlinear`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Nonlinear GMM Propagation</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example conditions a two-dimensional Gaussian mixture on one observed coordinate. The original mixture models a joint belief over position (x, y). After observing a particular value of y, GaussianMixture.cond returns a one-dimensional mixture for the remaining coordinate, representing p(x | y).">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_gmm_conditioning_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/gmm_conditioning`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Conditioning a Gaussian Mixture</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example reduces a four-component two-dimensional Gaussian mixture to two components. The reduction strategy samples from the original mixture, fits a GaussianMixtureEstimator with EM, and returns a smaller GaussianMixture.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_gmm_reduction_with_em_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/gmm_reduction_with_em`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Reducing a GMM With EM</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/gmm_fitting_with_em
+   /auto_examples/gmm_transformations
+   /auto_examples/gmm_closed_form_robot_localization
+   /auto_examples/introduction
+   /auto_examples/gmm_propagation_nonlinear
+   /auto_examples/gmm_conditioning
+   /auto_examples/gmm_reduction_with_em
+
+
+.. only:: html
+
+  .. container:: sphx-glr-footer sphx-glr-footer-gallery
+
+    .. container:: sphx-glr-download sphx-glr-download-python
+
+      :download:`Download all examples in Python source code: auto_examples_python.zip </auto_examples/auto_examples_python.zip>`
+
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip </auto_examples/auto_examples_jupyter.zip>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

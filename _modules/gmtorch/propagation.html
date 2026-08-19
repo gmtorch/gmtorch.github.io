@@ -30,6 +30,10 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -40,6 +44,7 @@
     <script src="../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gmtorch/propagation';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://gmtorch.github.io/_modules/gmtorch/propagation.html" />
@@ -130,6 +135,13 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../reference/modules.html">
     gmtorch
   </a>
@@ -213,6 +225,13 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../reference/modules.html">
     gmtorch
@@ -338,7 +357,19 @@
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.ClosedFormOperation">[docs]</a>
 <span class="nd">@runtime_checkable</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">ClosedFormOperation</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Protocol for exact Gaussian-mixture propagation operations."""</span>
+<span class="w">    </span><span class="sd">"""Protocol for exact Gaussian-mixture propagation operations.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import closed_form_propagation</span>
+<span class="sd">    &gt;&gt;&gt; class KeepFirstCoordinate:</span>
+<span class="sd">    ...     def apply(self, gm):</span>
+<span class="sd">    ...         return gm.marginalize(torch.tensor([0]))</span>
+<span class="sd">    &gt;&gt;&gt; result = closed_form_propagation(GaussianMixture(dim=2), [KeepFirstCoordinate()])</span>
+<span class="sd">    &gt;&gt;&gt; assert result.dim == 1</span>
+<span class="sd">    """</span>
 
 <div class="viewcode-block" id="ClosedFormOperation.apply">
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.ClosedFormOperation.apply">[docs]</a>
@@ -355,7 +386,17 @@
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.Scale">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Scale</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Closed-form scalar multiplication of a Gaussian mixture."""</span>
+<span class="w">    </span><span class="sd">"""Closed-form scalar multiplication of a Gaussian mixture.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import Scale</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(dim=1, means=torch.tensor([[2.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; result = Scale(3.0).apply(gm)</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(result.means, torch.tensor([[6.0]]))</span>
+<span class="sd">    """</span>
 
     <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Tensor</span>
 
@@ -372,7 +413,17 @@
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.Shift">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Shift</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Closed-form translation of a Gaussian mixture."""</span>
+<span class="w">    </span><span class="sd">"""Closed-form translation of a Gaussian mixture.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import Shift</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(dim=2)</span>
+<span class="sd">    &gt;&gt;&gt; result = Shift(torch.tensor([1.0, -1.0])).apply(gm)</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(result.means, torch.tensor([[1.0, -1.0]]))</span>
+<span class="sd">    """</span>
 
     <span class="n">offset</span><span class="p">:</span> <span class="n">Tensor</span>
 
@@ -389,7 +440,17 @@
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.Rotate2D">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Rotate2D</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Closed-form planar rotation of a two-dimensional Gaussian mixture."""</span>
+<span class="w">    </span><span class="sd">"""Closed-form planar rotation of a two-dimensional Gaussian mixture.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import Rotate2D</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(dim=2, means=torch.tensor([[1.0, 0.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; result = Rotate2D(torch.pi / 2).apply(gm)</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(result.means, torch.tensor([[0.0, 1.0]]), atol=1e-6)</span>
+<span class="sd">    """</span>
 
     <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Tensor</span>
     <span class="n">center</span><span class="p">:</span> <span class="n">Tensor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -407,7 +468,17 @@
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.Rotate3D">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Rotate3D</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Closed-form axis-angle rotation of a three-dimensional Gaussian mixture."""</span>
+<span class="w">    </span><span class="sd">"""Closed-form axis-angle rotation of a three-dimensional Gaussian mixture.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import Rotate3D</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(dim=3, means=torch.tensor([[1.0, 0.0, 0.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; result = Rotate3D(torch.tensor([0.0, 0.0, 1.0]), torch.pi / 2).apply(gm)</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(result.means, torch.tensor([[0.0, 1.0, 0.0]]), atol=1e-6)</span>
+<span class="sd">    """</span>
 
     <span class="n">axis</span><span class="p">:</span> <span class="n">Tensor</span>
     <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Tensor</span>
@@ -426,7 +497,19 @@
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.AffineTransform">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">AffineTransform</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Closed-form affine transformation of a Gaussian mixture."""</span>
+<span class="w">    </span><span class="sd">"""Closed-form affine transformation of a Gaussian mixture.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import AffineTransform</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(dim=2, means=torch.tensor([[1.0, 3.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; operation = AffineTransform(torch.tensor([[1.0, 0.0]]), torch.tensor([2.0]))</span>
+<span class="sd">    &gt;&gt;&gt; result = operation.apply(gm)</span>
+<span class="sd">    &gt;&gt;&gt; assert result.dim == 1</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(result.means, torch.tensor([[3.0]]))</span>
+<span class="sd">    """</span>
 
     <span class="n">matrix</span><span class="p">:</span> <span class="n">Tensor</span>
     <span class="n">offset</span><span class="p">:</span> <span class="n">Tensor</span>
@@ -444,7 +527,18 @@
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.SumIndependent">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">SumIndependent</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Closed-form sum with an independent Gaussian mixture."""</span>
+<span class="w">    </span><span class="sd">"""Closed-form sum with an independent Gaussian mixture.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import SumIndependent</span>
+<span class="sd">    &gt;&gt;&gt; gm0 = GaussianMixture(dim=1, means=torch.tensor([[1.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; gm1 = GaussianMixture(dim=1, means=torch.tensor([[3.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; result = SumIndependent(gm1).apply(gm0)</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(result.means, torch.tensor([[4.0]]))</span>
+<span class="sd">    """</span>
 
     <span class="n">other</span><span class="p">:</span> <span class="n">GaussianMixture</span>
 
@@ -461,7 +555,18 @@
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.SubtractIndependent">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">SubtractIndependent</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Closed-form difference with an independent Gaussian mixture."""</span>
+<span class="w">    </span><span class="sd">"""Closed-form difference with an independent Gaussian mixture.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import SubtractIndependent</span>
+<span class="sd">    &gt;&gt;&gt; gm0 = GaussianMixture(dim=1, means=torch.tensor([[1.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; gm1 = GaussianMixture(dim=1, means=torch.tensor([[3.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; result = SubtractIndependent(gm1).apply(gm0)</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(result.means, torch.tensor([[-2.0]]))</span>
+<span class="sd">    """</span>
 
     <span class="n">other</span><span class="p">:</span> <span class="n">GaussianMixture</span>
 
@@ -478,7 +583,18 @@
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.BayesianFusion">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">BayesianFusion</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Closed-form Bayesian fusion with another Gaussian mixture."""</span>
+<span class="w">    </span><span class="sd">"""Closed-form Bayesian fusion with another Gaussian mixture.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import BayesianFusion</span>
+<span class="sd">    &gt;&gt;&gt; gm0 = GaussianMixture(dim=1, means=torch.tensor([[0.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; gm1 = GaussianMixture(dim=1, means=torch.tensor([[1.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; result = BayesianFusion(gm1, block_size=1).apply(gm0)</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(result.weights.sum(), torch.tensor(1.0))</span>
+<span class="sd">    """</span>
 
     <span class="n">other</span><span class="p">:</span> <span class="n">GaussianMixture</span>
     <span class="n">block_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span>
@@ -496,7 +612,22 @@
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.Condition">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Condition</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Closed-form conditioning of a Gaussian mixture on observed coordinates."""</span>
+<span class="w">    </span><span class="sd">"""Closed-form conditioning of a Gaussian mixture on observed coordinates.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import Condition</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(</span>
+<span class="sd">    ...     dim=2,</span>
+<span class="sd">    ...     means=torch.tensor([[0.0, 0.0]]),</span>
+<span class="sd">    ...     covariances=torch.tensor([[[1.0, 0.5], [0.5, 2.0]]]),</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; result = Condition(torch.tensor([1.0]), obs_idx=torch.tensor([1])).apply(gm)</span>
+<span class="sd">    &gt;&gt;&gt; assert result.dim == 1</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(result.means, torch.tensor([[0.25]]))</span>
+<span class="sd">    """</span>
 
     <span class="n">obs_values</span><span class="p">:</span> <span class="n">Tensor</span>
     <span class="n">obs_idx</span><span class="p">:</span> <span class="n">Tensor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -514,7 +645,18 @@
 <a class="viewcode-back" href="../../reference/gmtorch.html#gmtorch.propagation.Marginalize">[docs]</a>
 <span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Marginalize</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Closed-form marginalization of a Gaussian mixture to selected coordinates."""</span>
+<span class="w">    </span><span class="sd">"""Closed-form marginalization of a Gaussian mixture to selected coordinates.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import Marginalize</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(dim=3, means=torch.tensor([[1.0, 2.0, 3.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; result = Marginalize(torch.tensor([2, 0])).apply(gm)</span>
+<span class="sd">    &gt;&gt;&gt; assert result.dim == 2</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(result.means, torch.tensor([[3.0, 1.0]]))</span>
+<span class="sd">    """</span>
 
     <span class="n">idx_keep</span><span class="p">:</span> <span class="n">Tensor</span>
 
@@ -561,6 +703,18 @@
 <span class="sd">        operation does not return a ``GaussianMixture``.</span>
 <span class="sd">    ValueError</span>
 <span class="sd">        If ``max_components`` is invalid or the propagated mixture exceeds it.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import Marginalize, Scale, Shift, closed_form_propagation</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(dim=2, means=torch.tensor([[1.0, 2.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; result = closed_form_propagation(</span>
+<span class="sd">    ...     gm, [Scale(2.0), Shift(torch.tensor([1.0, -1.0])), Marginalize(torch.tensor([0]))]</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; assert (result.n_components, result.dim) == (1, 1)</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(result.means, torch.tensor([[3.0]]))</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">max_components</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">_validate_positive_integer</span><span class="p">(</span><span class="s2">"max_components"</span><span class="p">,</span> <span class="n">max_components</span><span class="p">)</span>
@@ -640,6 +794,22 @@
 <span class="sd">    ValueError</span>
 <span class="sd">        If sample counts, target component count, fit arguments, or transformed</span>
 <span class="sd">        samples are invalid.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.propagation import propagate_gmm</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(dim=2)</span>
+<span class="sd">    &gt;&gt;&gt; propagated = propagate_gmm(</span>
+<span class="sd">    ...     gm,</span>
+<span class="sd">    ...     lambda x: x[:, :1].square(),</span>
+<span class="sd">    ...     n_samples=32,</span>
+<span class="sd">    ...     target_k=1,</span>
+<span class="sd">    ...     fit_kwargs={"max_iter": 2, "seed": 0},</span>
+<span class="sd">    ...     sample_seed=0,</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; assert (propagated.n_components, propagated.dim) == (1, 1)</span>
 <span class="sd">    """</span>
     <span class="n">_validate_positive_integer</span><span class="p">(</span><span class="s2">"target_k"</span><span class="p">,</span> <span class="n">target_k</span><span class="p">)</span>
     <span class="n">_validate_sample_count</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">target_k</span><span class="p">)</span>
@@ -779,7 +949,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans.
+      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans, Genís Floriach Pigem.
       <br/>
     
   </p>

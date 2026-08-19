@@ -31,6 +31,10 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -41,6 +45,7 @@
     <script src="../_static/documentation_options.js?v=01f34227"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/gmtorch.reduction';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://gmtorch.github.io/reference/gmtorch.reduction.html" />
@@ -131,6 +136,13 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="modules.html">
     gmtorch
@@ -217,6 +229,13 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="modules.html">
     gmtorch
@@ -360,6 +379,27 @@ reduced full-covariance mixture.</p></li>
 </ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianMixture</span><span class="p">,</span> <span class="n">GaussianMixtureEstimator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch.reduction</span><span class="w"> </span><span class="kn">import</span> <span class="n">EMBasedReductionStrategy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">weights</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]),</span>
+<span class="gp">... </span>    <span class="n">means</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]]),</span>
+<span class="gp">... </span>    <span class="n">covariances</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[</span><span class="mf">0.5</span><span class="p">]],</span> <span class="p">[[</span><span class="mf">0.5</span><span class="p">]]]),</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">strategy</span> <span class="o">=</span> <span class="n">EMBasedReductionStrategy</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">estimator</span><span class="o">=</span><span class="n">GaussianMixtureEstimator</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">n_samples</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">sample_seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reduced</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">strategy</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">gm</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">reduced</span><span class="o">.</span><span class="n">n_components</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">info</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+</pre></div>
+</div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gmtorch.reduction.EMBasedReductionStrategy.estimator">
 <span class="sig-name descname"><span class="pre">estimator</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixtureEstimator" title="gmtorch._gaussian_mixture_estimator.GaussianMixtureEstimator"><span class="pre">GaussianMixtureEstimator</span></a></span><a class="headerlink" href="#gmtorch.reduction.EMBasedReductionStrategy.estimator" title="Link to this definition">#</a></dt>
@@ -386,6 +426,13 @@ reduced full-covariance mixture.</p></li>
 <dd class="field-odd"><p><a class="reference internal" href="#gmtorch.reduction.EMBasedReductionStrategy" title="gmtorch.reduction.EMBasedReductionStrategy">EMBasedReductionStrategy</a></p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch.reduction</span><span class="w"> </span><span class="kn">import</span> <span class="n">EMBasedReductionStrategy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">strategy</span> <span class="o">=</span> <span class="n">EMBasedReductionStrategy</span><span class="o">.</span><span class="n">from_n_components</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">sample_seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">strategy</span><span class="o">.</span><span class="n">target_n_components</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">strategy</span><span class="o">.</span><span class="n">n_samples</span> <span class="o">==</span> <span class="mi">32</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
@@ -397,6 +444,27 @@ reduced full-covariance mixture.</p></li>
 <dt class="sig sig-object py" id="gmtorch.reduction.EMBasedReductionStrategy.reduce">
 <span class="sig-name descname"><span class="pre">reduce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture" title="gmtorch.GaussianMixture"><span class="pre">GaussianMixture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture" title="gmtorch.GaussianMixture"><span class="pre">GaussianMixture</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">EMFitInfo</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/gmtorch/reduction/_em.html#EMBasedReductionStrategy.reduce"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch.reduction.EMBasedReductionStrategy.reduce" title="Link to this definition">#</a></dt>
 <dd><p>Sample <code class="docutils literal notranslate"><span class="pre">gm</span></code>, fit the estimator, and return its mixture and fit information.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianMixture</span><span class="p">,</span> <span class="n">GaussianMixtureEstimator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch.reduction</span><span class="w"> </span><span class="kn">import</span> <span class="n">EMBasedReductionStrategy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">weights</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]),</span>
+<span class="gp">... </span>    <span class="n">means</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]]),</span>
+<span class="gp">... </span>    <span class="n">covariances</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[</span><span class="mf">0.5</span><span class="p">]],</span> <span class="p">[[</span><span class="mf">0.5</span><span class="p">]]]),</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">strategy</span> <span class="o">=</span> <span class="n">EMBasedReductionStrategy</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">GaussianMixtureEstimator</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">n_samples</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">sample_seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reduced</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">strategy</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">gm</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">reduced</span><span class="o">.</span><span class="n">n_components</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">info</span><span class="o">.</span><span class="n">lower_bound</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
@@ -413,6 +481,12 @@ reduced full-covariance mixture.</p></li>
 <dt class="sig sig-object py" id="gmtorch.reduction.EMBasedReductionStrategy.target_n_components">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">target_n_components</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#gmtorch.reduction.EMBasedReductionStrategy.target_n_components" title="Link to this definition">#</a></dt>
 <dd><p>Return the estimator’s configured component count.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch.reduction</span><span class="w"> </span><span class="kn">import</span> <span class="n">EMBasedReductionStrategy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">strategy</span> <span class="o">=</span> <span class="n">EMBasedReductionStrategy</span><span class="o">.</span><span class="n">from_n_components</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">strategy</span><span class="o">.</span><span class="n">target_n_components</span> <span class="o">==</span> <span class="mi">2</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -422,6 +496,30 @@ reduced full-covariance mixture.</p></li>
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gmtorch.reduction.</span></span><span class="sig-name descname"><span class="pre">ReductionStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gmtorch/reduction/_base.html#ReductionStrategy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch.reduction.ReductionStrategy" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">InfoT_co</span></code>]</p>
 <p>Structural interface implemented by Gaussian-mixture reduction strategies.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianMixture</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch.reduction</span><span class="w"> </span><span class="kn">import</span> <span class="n">reduce_gmm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">KeepFirstComponent</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nd">@property</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">target_n_components</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="mi">1</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">reduce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gm</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">reduced</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span>
+<span class="gp">... </span>            <span class="n">n_components</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="n">dim</span><span class="o">=</span><span class="n">gm</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="n">weights</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">]),</span>
+<span class="gp">... </span>            <span class="n">means</span><span class="o">=</span><span class="n">gm</span><span class="o">.</span><span class="n">means</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>            <span class="n">covariances</span><span class="o">=</span><span class="n">gm</span><span class="o">.</span><span class="n">covariances</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>            <span class="n">device</span><span class="o">=</span><span class="n">gm</span><span class="o">.</span><span class="n">device</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="p">)</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">reduced</span><span class="p">,</span> <span class="p">{</span><span class="s2">"method"</span><span class="p">:</span> <span class="s2">"first"</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reduced</span> <span class="o">=</span> <span class="n">reduce_gmm</span><span class="p">(</span><span class="n">gm</span><span class="p">,</span> <span class="n">KeepFirstComponent</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">reduced</span><span class="o">.</span><span class="n">n_components</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="gmtorch.reduction.ReductionStrategy.reduce">
 <span class="sig-name descname"><span class="pre">reduce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture" title="gmtorch.GaussianMixture"><span class="pre">GaussianMixture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="gmtorch.html#gmtorch.GaussianMixture" title="gmtorch.GaussianMixture"><span class="pre">GaussianMixture</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">InfoT_co</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/gmtorch/reduction/_base.html#ReductionStrategy.reduce"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gmtorch.reduction.ReductionStrategy.reduce" title="Link to this definition">#</a></dt>
@@ -468,6 +566,27 @@ implementation, and method-specific information type.</p></li>
 </ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianMixture</span><span class="p">,</span> <span class="n">GaussianMixtureEstimator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gmtorch.reduction</span><span class="w"> </span><span class="kn">import</span> <span class="n">EMBasedReductionStrategy</span><span class="p">,</span> <span class="n">reduce_gmm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">weights</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]),</span>
+<span class="gp">... </span>    <span class="n">means</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]]),</span>
+<span class="gp">... </span>    <span class="n">covariances</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[</span><span class="mf">0.5</span><span class="p">]],</span> <span class="p">[[</span><span class="mf">0.5</span><span class="p">]]]),</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">strategy</span> <span class="o">=</span> <span class="n">EMBasedReductionStrategy</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">GaussianMixtureEstimator</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">n_samples</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">sample_seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reduced</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">reduce_gmm</span><span class="p">(</span><span class="n">gm</span><span class="p">,</span> <span class="n">strategy</span><span class="p">,</span> <span class="n">return_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">reduced</span><span class="o">.</span><span class="n">n_components</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">info</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>
@@ -567,7 +686,7 @@ implementation, and method-specific information type.</p></li>
 
   <p class="copyright">
     
-      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans.
+      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans, Genís Floriach Pigem.
       <br/>
     
   </p>

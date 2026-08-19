@@ -30,6 +30,10 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -40,6 +44,7 @@
     <script src="../../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gmtorch/reduction/_base';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://gmtorch.github.io/_modules/gmtorch/reduction/_base.html" />
@@ -130,6 +135,13 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../reference/modules.html">
     gmtorch
   </a>
@@ -213,6 +225,13 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../reference/modules.html">
     gmtorch
@@ -321,7 +340,32 @@
 <div class="viewcode-block" id="ReductionStrategy">
 <a class="viewcode-back" href="../../../reference/gmtorch.reduction.html#gmtorch.reduction.ReductionStrategy">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ReductionStrategy</span><span class="p">(</span><span class="n">Protocol</span><span class="p">[</span><span class="n">InfoT_co</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">"""Structural interface implemented by Gaussian-mixture reduction strategies."""</span>
+<span class="w">    </span><span class="sd">"""Structural interface implemented by Gaussian-mixture reduction strategies.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.reduction import reduce_gmm</span>
+<span class="sd">    &gt;&gt;&gt; class KeepFirstComponent:</span>
+<span class="sd">    ...     @property</span>
+<span class="sd">    ...     def target_n_components(self):</span>
+<span class="sd">    ...         return 1</span>
+<span class="sd">    ...</span>
+<span class="sd">    ...     def reduce(self, gm):</span>
+<span class="sd">    ...         reduced = GaussianMixture(</span>
+<span class="sd">    ...             n_components=1,</span>
+<span class="sd">    ...             dim=gm.dim,</span>
+<span class="sd">    ...             weights=torch.tensor([1.0]),</span>
+<span class="sd">    ...             means=gm.means[:1],</span>
+<span class="sd">    ...             covariances=gm.covariances[:1],</span>
+<span class="sd">    ...             device=gm.device,</span>
+<span class="sd">    ...         )</span>
+<span class="sd">    ...         return reduced, {"method": "first"}</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(n_components=2, dim=1)</span>
+<span class="sd">    &gt;&gt;&gt; reduced = reduce_gmm(gm, KeepFirstComponent())</span>
+<span class="sd">    &gt;&gt;&gt; assert reduced.n_components == 1</span>
+<span class="sd">    """</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">target_n_components</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -385,6 +429,27 @@
 <span class="sd">    RuntimeError</span>
 <span class="sd">        If the strategy returns a mixture with an unexpected component count</span>
 <span class="sd">        or dimensionality.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture, GaussianMixtureEstimator</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.reduction import EMBasedReductionStrategy, reduce_gmm</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(</span>
+<span class="sd">    ...     n_components=2,</span>
+<span class="sd">    ...     dim=1,</span>
+<span class="sd">    ...     weights=torch.tensor([0.5, 0.5]),</span>
+<span class="sd">    ...     means=torch.tensor([[-1.0], [1.0]]),</span>
+<span class="sd">    ...     covariances=torch.tensor([[[0.5]], [[0.5]]]),</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; strategy = EMBasedReductionStrategy(</span>
+<span class="sd">    ...     GaussianMixtureEstimator(n_components=1, max_iter=2, seed=0),</span>
+<span class="sd">    ...     n_samples=16,</span>
+<span class="sd">    ...     sample_seed=0,</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; reduced, info = reduce_gmm(gm, strategy, return_info=True)</span>
+<span class="sd">    &gt;&gt;&gt; assert reduced.n_components == 1</span>
+<span class="sd">    &gt;&gt;&gt; assert info.n_iter &gt;= 0</span>
 <span class="sd">    """</span>
     <span class="n">target_n_components</span> <span class="o">=</span> <span class="n">_validate_target_n_components</span><span class="p">(</span><span class="n">gm</span><span class="p">,</span> <span class="n">strategy</span><span class="o">.</span><span class="n">target_n_components</span><span class="p">)</span>
     <span class="n">reduced</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">strategy</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">gm</span><span class="p">)</span>
@@ -468,7 +533,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans.
+      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans, Genís Floriach Pigem.
       <br/>
     
   </p>

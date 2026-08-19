@@ -30,6 +30,10 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -40,6 +44,7 @@
     <script src="../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gmtorch/fusion';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://gmtorch.github.io/_modules/gmtorch/fusion.html" />
@@ -130,6 +135,13 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../reference/modules.html">
     gmtorch
   </a>
@@ -213,6 +225,13 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../reference/modules.html">
     gmtorch
@@ -320,18 +339,16 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">bayesian_fusion_gmm</span><span class="p">(</span>
     <span class="n">gm0</span><span class="p">:</span> <span class="n">GaussianMixture</span><span class="p">,</span> <span class="n">gm1</span><span class="p">:</span> <span class="n">GaussianMixture</span><span class="p">,</span> <span class="n">block_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GaussianMixture</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Fuse two Gaussian mixtures by taking the normalized product of their densities.</span>
+<span class="w">    </span><span class="sd">"""Fuse two Gaussian mixtures by taking the normalized product of their densities.</span>
 
 <span class="sd">    This function computes the Bayesian fusion of two Gaussian mixtures</span>
 <span class="sd">    ``gm0`` and ``gm1`` with matching dimensionality. Each pair of components</span>
-<span class="sd">    ``(i, j)`` produces one fused Gaussian with:</span>
-<span class="sd">    - covariance ``(Sigma0_i^{-1} + Sigma1_j^{-1})^{-1}``,</span>
-<span class="sd">    - mean weighted by the summed precision-mean products,</span>
-<span class="sd">    - unnormalized weight equal to the product of component weights scaled by</span>
-<span class="sd">      the Gaussian overlap term.</span>
+<span class="sd">    ``(i, j)`` produces one fused Gaussian. Its covariance is</span>
+<span class="sd">    ``(Sigma0_i^{-1} + Sigma1_j^{-1})^{-1}``, its mean is weighted by the</span>
+<span class="sd">    summed precision-mean products, and its unnormalized weight is the product</span>
+<span class="sd">    of component weights scaled by the Gaussian overlap term.</span>
 
-<span class="sd">    The resulting mixture has ``gm0.n_components * gm1.n_components``</span>
+<span class="sd">    The resulting mixture has ``gm0.n_components * gm1.n_components`` components.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -348,6 +365,17 @@
 <span class="sd">    GaussianMixture</span>
 <span class="sd">        The fused Gaussian mixture distribution representing the normalized</span>
 <span class="sd">        product ``p(x) ∝ p_gm0(x) * p_gm1(x)``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.fusion import bayesian_fusion_gmm</span>
+<span class="sd">    &gt;&gt;&gt; gm0 = GaussianMixture(dim=1, means=torch.tensor([[0.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; gm1 = GaussianMixture(dim=1, means=torch.tensor([[1.0]]))</span>
+<span class="sd">    &gt;&gt;&gt; fused = bayesian_fusion_gmm(gm0, gm1, block_size=1)</span>
+<span class="sd">    &gt;&gt;&gt; assert fused.n_components == gm0.n_components * gm1.n_components</span>
+<span class="sd">    &gt;&gt;&gt; assert torch.allclose(fused.weights.sum(), torch.tensor(1.0))</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">gm0</span><span class="o">.</span><span class="n">dim</span> <span class="o">!=</span> <span class="n">gm1</span><span class="o">.</span><span class="n">dim</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="s2">"GaussianMixture dimensions must match for fusion"</span>
@@ -566,7 +594,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans.
+      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans, Genís Floriach Pigem.
       <br/>
     
   </p>

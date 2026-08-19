@@ -30,6 +30,10 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
@@ -40,6 +44,7 @@
     <script src="../../../_static/documentation_options.js?v=01f34227"></script>
     <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/sg-tags.js?v=d80f6fa4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gmtorch/reduction/_em';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://gmtorch.github.io/_modules/gmtorch/reduction/_em.html" />
@@ -130,6 +135,13 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../reference/modules.html">
     gmtorch
   </a>
@@ -213,6 +225,13 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../auto_examples/index.html">
+    Examples
+  </a>
+</li>
+
+
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../../reference/modules.html">
     gmtorch
@@ -341,6 +360,27 @@
 <span class="sd">    samples_per_parameter : int, default=10</span>
 <span class="sd">        Multiplier applied to the reduced mixture's free-parameter count when</span>
 <span class="sd">        ``n_samples`` is omitted.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import torch</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch import GaussianMixture, GaussianMixtureEstimator</span>
+<span class="sd">    &gt;&gt;&gt; from gmtorch.reduction import EMBasedReductionStrategy</span>
+<span class="sd">    &gt;&gt;&gt; gm = GaussianMixture(</span>
+<span class="sd">    ...     n_components=2,</span>
+<span class="sd">    ...     dim=1,</span>
+<span class="sd">    ...     weights=torch.tensor([0.5, 0.5]),</span>
+<span class="sd">    ...     means=torch.tensor([[-1.0], [1.0]]),</span>
+<span class="sd">    ...     covariances=torch.tensor([[[0.5]], [[0.5]]]),</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; strategy = EMBasedReductionStrategy(</span>
+<span class="sd">    ...     estimator=GaussianMixtureEstimator(n_components=1, max_iter=2, seed=0),</span>
+<span class="sd">    ...     n_samples=16,</span>
+<span class="sd">    ...     sample_seed=0,</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; reduced, info = strategy.reduce(gm)</span>
+<span class="sd">    &gt;&gt;&gt; assert reduced.n_components == 1</span>
+<span class="sd">    &gt;&gt;&gt; assert info.n_iter &gt;= 0</span>
 <span class="sd">    """</span>
 
     <span class="n">estimator</span><span class="p">:</span> <span class="n">GaussianMixtureEstimator</span>
@@ -377,6 +417,13 @@
 <span class="sd">        EMBasedReductionStrategy</span>
 <span class="sd">            Strategy containing a new, unfitted estimator configured with</span>
 <span class="sd">            ``n_components`` and otherwise using estimator defaults.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from gmtorch.reduction import EMBasedReductionStrategy</span>
+<span class="sd">        &gt;&gt;&gt; strategy = EMBasedReductionStrategy.from_n_components(2, n_samples=32, sample_seed=0)</span>
+<span class="sd">        &gt;&gt;&gt; assert strategy.target_n_components == 2</span>
+<span class="sd">        &gt;&gt;&gt; assert strategy.n_samples == 32</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">estimator</span><span class="o">=</span><span class="n">GaussianMixtureEstimator</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">),</span>
@@ -388,13 +435,42 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">target_n_components</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Return the estimator's configured component count."""</span>
+<span class="w">        </span><span class="sd">"""Return the estimator's configured component count.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; from gmtorch.reduction import EMBasedReductionStrategy</span>
+<span class="sd">        &gt;&gt;&gt; strategy = EMBasedReductionStrategy.from_n_components(2)</span>
+<span class="sd">        &gt;&gt;&gt; assert strategy.target_n_components == 2</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">n_components</span>
 
 <div class="viewcode-block" id="EMBasedReductionStrategy.reduce">
 <a class="viewcode-back" href="../../../reference/gmtorch.reduction.html#gmtorch.reduction.EMBasedReductionStrategy.reduce">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">reduce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gm</span><span class="p">:</span> <span class="n">GaussianMixture</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">GaussianMixture</span><span class="p">,</span> <span class="n">EMFitInfo</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">"""Sample ``gm``, fit the estimator, and return its mixture and fit information."""</span>
+<span class="w">        </span><span class="sd">"""Sample ``gm``, fit the estimator, and return its mixture and fit information.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import torch</span>
+<span class="sd">        &gt;&gt;&gt; from gmtorch import GaussianMixture, GaussianMixtureEstimator</span>
+<span class="sd">        &gt;&gt;&gt; from gmtorch.reduction import EMBasedReductionStrategy</span>
+<span class="sd">        &gt;&gt;&gt; gm = GaussianMixture(</span>
+<span class="sd">        ...     n_components=2,</span>
+<span class="sd">        ...     dim=1,</span>
+<span class="sd">        ...     weights=torch.tensor([0.5, 0.5]),</span>
+<span class="sd">        ...     means=torch.tensor([[-1.0], [1.0]]),</span>
+<span class="sd">        ...     covariances=torch.tensor([[[0.5]], [[0.5]]]),</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; strategy = EMBasedReductionStrategy(</span>
+<span class="sd">        ...     GaussianMixtureEstimator(n_components=1, max_iter=2, seed=0),</span>
+<span class="sd">        ...     n_samples=16,</span>
+<span class="sd">        ...     sample_seed=0,</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; reduced, info = strategy.reduce(gm)</span>
+<span class="sd">        &gt;&gt;&gt; assert reduced.n_components == 1</span>
+<span class="sd">        &gt;&gt;&gt; assert info.lower_bound.ndim == 0</span>
+<span class="sd">        """</span>
         <span class="n">n_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolve_n_samples</span><span class="p">(</span><span class="n">gm</span><span class="p">)</span>
         <span class="n">samples</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_seed</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
@@ -487,7 +563,7 @@
 
   <p class="copyright">
     
-      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans.
+      © Copyright 2025, Ali Darijani, Tomass Marks Timmermans, Genís Floriach Pigem.
       <br/>
     
   </p>

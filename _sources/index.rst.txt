@@ -12,6 +12,7 @@ Welcome to gmtorch's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   auto_examples/index
    reference/modules
 
 .. meta::
